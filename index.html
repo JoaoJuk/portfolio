@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt" id="html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Vitor Juk Lopes — Desenvolvedor Full Stack</title>
+<meta name="description" content="Desenvolvedor Full Stack (foco Back-End) — Java, Python, TypeScript. Estudante de Engenharia da Computação na PUCPR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8fafc; --bg-soft:#f1f5f9; --card:#ffffff;
+    --ink:#0f172a; --ink-soft:#475569; --muted:#64748b;
+    --accent:#0ea5a4; --accent-ink:#0f766e; --line:#e2e8f0;
+    --tag-bg:#e6fffb; --tag-ink:#0f766e;
+    --shadow:0 1px 3px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.05);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.5;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--tag-bg);color:var(--accent-ink)}
+
+  .wrap{max-width:1150px;margin:0 auto;padding:0 28px;
+    display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:40px}
+
+  /* ---- COLUNA FIXA ---- */
+  .side{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;
+    justify-content:space-between;padding:80px 0 64px}
+  .photo{width:92px;height:92px;border-radius:18px;object-fit:cover;
+    background:linear-gradient(135deg,var(--accent),#22d3ee);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:34px;font-weight:800;letter-spacing:1px;
+    box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover}
+  h1{font-size:40px;font-weight:800;letter-spacing:-1px;line-height:1.05}
+  .role{font-size:19px;font-weight:600;margin-top:6px;color:var(--ink)}
+  .tagline{margin-top:16px;max-width:320px;color:var(--ink-soft);font-size:15.5px}
+
+  nav{margin-top:52px;display:flex;flex-direction:column;gap:2px}
+  .nav-link{display:flex;align-items:center;gap:14px;padding:8px 0;
+    color:var(--muted);font-weight:600;font-size:13px;letter-spacing:1.2px;
+    text-transform:uppercase;transition:.25s;width:max-content}
+  .nav-link .bar{width:30px;height:1.5px;background:var(--line);transition:.25s}
+  .nav-link:hover,.nav-link.active{color:var(--ink)}
+  .nav-link:hover .bar,.nav-link.active .bar{width:56px;background:var(--accent)}
+
+  .socials{display:flex;gap:18px;margin-top:40px;align-items:center}
+  .socials a{color:var(--muted);transition:.2s}
+  .socials a:hover{color:var(--accent)}
+  .socials svg{width:22px;height:22px}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);
+    color:#fff;font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;
+    margin-top:26px;transition:.2s;box-shadow:var(--shadow);width:max-content}
+  .btn:hover{background:var(--accent-ink);transform:translateY(-1px)}
+
+  .lang{position:absolute;top:28px;right:0;display:flex;gap:4px;
+    background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+  .lang button{border:0;background:none;cursor:pointer;font-weight:700;font-size:12px;
+    padding:5px 12px;border-radius:999px;color:var(--muted);font-family:inherit}
+  .lang button.on{background:var(--accent);color:#fff}
+
+  /* ---- COLUNA ROLÁVEL ---- */
+  main{padding:80px 0 120px}
+  section{margin-bottom:96px;scroll-margin-top:60px}
+  .sec-label{display:none;font-size:12px;font-weight:700;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .about p{color:var(--ink-soft);font-size:16px;margin-bottom:16px;max-width:620px}
+  .about strong{color:var(--ink);font-weight:600}
+
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;max-width:620px}
+  .chip{background:var(--tag-bg);color:var(--tag-ink);font-size:12.5px;font-weight:600;
+    padding:5px 12px;border-radius:999px}
+
+  .entry{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:22px;
+    border-radius:14px;transition:.25s;border:1px solid transparent;margin:0 -22px}
+  .entry:hover{background:var(--card);border-color:var(--line);box-shadow:var(--shadow)}
+  .entry .when{font-size:12.5px;font-weight:600;letter-spacing:.5px;color:var(--muted);
+    text-transform:uppercase;padding-top:4px}
+  .entry h3{font-size:17px;font-weight:700}
+  .entry .org{color:var(--accent-ink);font-weight:600}
+  .entry p{color:var(--ink-soft);font-size:14.5px;margin-top:8px}
+  .entry .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .entry .tags span{background:var(--bg-soft);color:var(--ink-soft);font-size:11.5px;
+    font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+
+  .proj h3 a{display:inline-flex;align-items:center;gap:7px}
+  .proj h3 a:hover{color:var(--accent)}
+  .proj .arrow{transition:.2s}
+  .entry:hover .arrow{transform:translate(3px,-3px)}
+  .plinks{display:flex;gap:16px;margin-top:12px}
+  .plinks a{font-size:13px;font-weight:600;color:var(--accent-ink);display:inline-flex;gap:5px;align-items:center}
+  .plinks a:hover{text-decoration:underline}
+  .badge-live{font-size:11px;font-weight:700;color:#fff;background:var(--accent);
+    padding:2px 8px;border-radius:999px;vertical-align:middle;margin-left:8px}
+
+  .contact p{color:var(--ink-soft);font-size:16px;max-width:560px;margin-bottom:8px}
+  .foot{margin-top:70px;color:var(--muted);font-size:13px}
+
+  [data-en]{display:none}
+  html[lang="en"] [data-pt]{display:none}
+  html[lang="en"] [data-en]{display:inline}
+  html[lang="en"] p[data-en],html[lang="en"] span.block[data-en]{display:block}
+
+  @media(max-width:880px){
+    .wrap{grid-template-columns:1fr;gap:0;padding:0 22px}
+    .side{position:relative;height:auto;padding:70px 0 20px}
+    nav{display:none}
+    main{padding:20px 0 80px}
+    .entry{grid-template-columns:1fr;gap:4px;margin:0 -14px;padding:18px 14px}
+    .entry .when{padding-top:0}
+    h1{font-size:33px}
+    .lang{position:fixed;top:16px;right:16px;z-index:10;box-shadow:var(--shadow)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- COLUNA FIXA -->
+  <header class="side">
+    <div class="lang">
+      <button id="btn-pt" class="on" onclick="setLang('pt')">PT</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+
+    <div>
+      <div class="photo" id="photo"><span>JV</span></div>
+      <h1>João Vitor<br>Juk Lopes</h1>
+      <div class="role" data-pt>Desenvolvedor Full Stack</div>
+      <div class="role" data-en>Full Stack Developer</div>
+      <p class="tagline" data-pt>Construo aplicações ponta a ponta — do banco de dados e da API até o app no ar. Foco em back-end.</p>
+      <p class="tagline" data-en>I build end-to-end applications — from the database and API to the shipped app. Back-end focused.</p>
+
+      <nav>
+        <a class="nav-link" href="#sobre"><span class="bar"></span><span data-pt>Sobre</span><span data-en>About</span></a>
+        <a class="nav-link" href="#experiencia"><span class="bar"></span><span data-pt>Experiência</span><span data-en>Experience</span></a>
+        <a class="nav-link" href="#projetos"><span class="bar"></span><span data-pt>Projetos</span><span data-en>Projects</span></a>
+        <a class="nav-link" href="#contato"><span class="bar"></span><span data-pt>Contato</span><span data-en>Contact</span></a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="socials">
+        <a href="https://github.com/JoaoJuk" aria-label="GitHub" target="_blank"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+        <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-juk-lopes/" aria-label="LinkedIn" target="_blank"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.3a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-4.7c0-1.1 0-2.5-1.5-2.5S12.8 13 12.8 14.2V19h-3v-9h2.9v1.2h.1a3.2 3.2 0 012.9-1.6c3 0 3.6 2 3.6 4.6z"/></svg></a>
+        <a href="mailto:joaojuk19@gmail.com" aria-label="Email"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg></a>
+      </div>
+      <a class="btn" href="curriculo.pdf" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
+        <span data-pt>Baixar currículo</span><span data-en>Download résumé</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- COLUNA ROLÁVEL -->
+  <main>
+    <section id="sobre" class="about">
+      <div class="sec-label" data-pt>Sobre</div><div class="sec-label" data-en>About</div>
+      <p data-pt>Olá! Sou o João Vitor, estudante de <strong>Engenharia da Computação na PUCPR</strong> (8º período) e desenvolvedor com foco em back-end. Gosto de pensar o sistema inteiro — da modelagem do banco e das regras de negócio no servidor até a interface que o usuário toca.</p>
+      <p data-en>Hi! I'm João Vitor, a <strong>Computer Engineering student at PUCPR</strong> (4th year) and a back-end focused developer. I like thinking about the whole system — from database modeling and server-side business rules to the interface the user touches.</p>
+      <p data-pt>Hoje sou estagiário de TI no <strong>Serpro</strong>, onde trabalho com sistemas corporativos, APIs REST e testes. Nos projetos próprios construo desde servidores concorrentes em C++ até aplicações full-stack em produção, com autenticação, banco de dados e deploy.</p>
+      <p data-en>I'm currently an IT intern at <strong>Serpro</strong>, working with enterprise systems, REST APIs and testing. On my own projects I build everything from concurrent C++ servers to full-stack apps in production, with authentication, databases and deployment.</p>
+      <div class="stack">
+        <span class="chip">Java</span><span class="chip">Python</span><span class="chip">TypeScript</span>
+        <span class="chip">C++</span><span class="chip">React</span><span class="chip">React Native</span>
+        <span class="chip">Node.js</span><span class="chip">Fastify</span><span class="chip">PostgreSQL</span>
+        <span class="chip">Prisma</span><span class="chip">Docker</span><span class="chip">Git</span>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="sec-label" data-pt>Experiência</div><div class="sec-label" data-en>Experience</div>
+
+      <div class="entry">
+        <div class="when">Jan 2025 — <span data-pt>Atual</span><span data-en>Present</span></div>
+        <div>
+          <h3><span data-pt>Estagiário de TI</span><span data-en>IT Intern</span> · <span class="org">Serpro</span></h3>
+          <p data-pt>Desenvolvimento de aplicações corporativas (OutSystems): modelagem de dados, regras de negócio no servidor e integração via APIs REST. Documentação de casos de uso e testes funcionais (QA). Criei uma ferramenta interna integrada à API da Anthropic que gera especificações a partir de telas, reduzindo o tempo de documentação da equipe.</p>
+          <p data-en>Development of enterprise applications (OutSystems): data modeling, server-side business rules and REST API integration. Use-case documentation and functional testing (QA). Built an internal tool integrated with Anthropic's API that generates specs from screens, reducing the team's documentation time.</p>
+          <div class="tags"><span>APIs REST</span><span>OutSystems</span><span>JavaScript</span><span>QA</span></div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="when">2024 · 6 <span data-pt>meses</span><span data-en>months</span></div>
+        <div>
+          <h3><span data-pt>Desenvolvedor de Software (freelance)</span><span data-en>Software Developer (freelance)</span> · <span class="org">Magnus / Alavancas Comerciais</span></h3>
+          <p data-pt>Desenvolvimento ponta a ponta de um CRM de prospecção comercial com IA para um cliente real: qualificação de leads, geração assistida de mensagens, funil com follow-up. Back-end em Python com PostgreSQL (Supabase), integração de e-mail (SMTP/IMAP) e Google Sheets, painel web próprio e deploy em VPS.</p>
+          <p data-en>End-to-end development of an AI-powered sales prospecting CRM for a real client: lead qualification, assisted message generation, follow-up funnel. Python back-end with PostgreSQL (Supabase), email integration (SMTP/IMAP) and Google Sheets, a custom web dashboard and VPS deployment.</p>
+          <div class="tags"><span>Python</span><span>PostgreSQL</span><span>Supabase</span><span>SMTP/IMAP</span><span>VPS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="proj">
+      <div class="sec-label" data-pt>Projetos</div><div class="sec-label" data-en>Projects</div>
+
+      <div class="entry">
+        <div class="when">PWA · Full-Stack</div>
+        <div>
+          <h3><a href="https://clivra-puce.vercel.app" target="_blank">CLIVRA <span class="arrow">↗</span></a><span class="badge-live" data-pt>no ar</span><span class="badge-live" data-en>live</span></h3>
+          <p data-pt>App instalável de controle de gastos de cartão: registra compras, categoriza automaticamente, aprende regras e mostra dashboards. Autenticação segura (JWT + Argon2) e funcionamento offline. Em produção.</p>
+          <p data-en>Installable card-spending tracker: logs purchases, auto-categorizes, learns rules and shows dashboards. Secure auth (JWT + Argon2) and offline support. In production.</p>
+          <div class="tags"><span>React</span><span>TypeScript</span><span>Node</span><span>Fastify</span><span>PostgreSQL</span><span>PWA</span></div>
+          <div class="plinks">
+            <a href="https://clivra-puce.vercel.app" target="_blank">↗ <span data-pt>Ver app</span><span data-en>Live app</span></a>
+            <a href="https://github.com/JoaoJuk/clivra" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="when">Mobile · API</div>
+        <div>
+          <h3><a href="https://github.com/JoaoJuk/arenahub" target="_blank">ArenaHub <span class="arrow">↗</span></a></h3>
+          <p data-pt>Marketplace de reserva de arenas esportivas (iOS/Android): busca de quadras, agendamento e divisão do pagamento entre amigos por link, sem que o convidado precise instalar o app. Integração com Mercado Pago.</p>
+          <p data-en>Sports venue booking marketplace (iOS/Android): court search, scheduling and payment splitting among friends via link, without guests needing to install the app. Mercado Pago integration.</p>
+          <div class="tags"><span>React Native</span><span>Expo</span><span>Fastify</span><span>Prisma</span><span>PostgreSQL</span></div>
+          <div class="plinks">
+            <a href="https://github.com/JoaoJuk/arenahub" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="when">C++ · SO</div>
+        <div>
+          <h3><a href="https://github.com/JoaoJuk/so-ipc-lab" target="_blank">so-ipc-lab <span class="arrow">↗</span></a></h3>
+          <p data-pt>Servidor multithread em C++17 com três mecanismos de IPC (Named Pipes, Sockets TCP e Memória Compartilhada) atrás de uma interface única, com benchmark de latência/vazão, testes com pytest e CI no GitHub Actions.</p>
+          <p data-en>Multithreaded C++17 server with three IPC mechanisms (Named Pipes, TCP Sockets and Shared Memory) behind a single interface, with latency/throughput benchmarking, pytest tests and GitHub Actions CI.</p>
+          <div class="tags"><span>C++17</span><span>POSIX</span><span>Docker</span><span>CMake</span><span>CI</span></div>
+          <div class="plinks">
+            <a href="https://github.com/JoaoJuk/so-ipc-lab" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="when">Python · ML</div>
+        <div>
+          <h3><a href="https://github.com/JoaoJuk/santos-fc-analise-dados" target="_blank">Santos FC — Análise de Dados <span class="arrow">↗</span></a></h3>
+          <p data-pt>Pipeline de dados e modelagem preditiva integrando quatro bases públicas (SQL via DuckDB) com machine learning em scikit-learn (Random Forest, avaliação por acurácia balanceada e F1-macro).</p>
+          <p data-en>Data pipeline and predictive modeling integrating four public datasets (SQL via DuckDB) with machine learning in scikit-learn (Random Forest, evaluated by balanced accuracy and F1-macro).</p>
+          <div class="tags"><span>Python</span><span>DuckDB</span><span>scikit-learn</span><span>Pandas</span></div>
+          <div class="plinks">
+            <a href="https://github.com/JoaoJuk/santos-fc-analise-dados" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="contact">
+      <div class="sec-label" data-pt>Contato</div><div class="sec-label" data-en>Contact</div>
+      <h2 style="font-size:28px;font-weight:800;margin-bottom:16px" data-pt>Vamos conversar</h2>
+      <h2 style="font-size:28px;font-weight:800;margin-bottom:16px" data-en>Let's talk</h2>
+      <p data-pt>Estou aberto a vagas de estágio e júnior (Curitiba/PR e remoto). Se o meu trabalho combina com o que você procura, me chama.</p>
+      <p data-en>I'm open to internship and junior roles (Curitiba/Brazil and remote). If my work fits what you're looking for, reach out.</p>
+      <a class="btn" href="mailto:joaojuk19@gmail.com" style="margin-top:20px">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16z"/></svg>
+        joaojuk19@gmail.com
+      </a>
+      <div class="foot" data-pt>Feito por João Vitor Juk Lopes · 2026</div>
+      <div class="foot" data-en>Built by João Vitor Juk Lopes · 2026</div>
+    </section>
+  </main>
+</div>
+
+<script>
+  function setLang(l){
+    document.getElementById('html').setAttribute('lang', l);
+    document.getElementById('btn-pt').classList.toggle('on', l==='pt');
+    document.getElementById('btn-en').classList.toggle('on', l==='en');
+    try{localStorage.setItem('lang', l)}catch(e){}
+  }
+  try{var saved=localStorage.getItem('lang'); if(saved) setLang(saved);}catch(e){}
+
+  // scrollspy — acende a navegação conforme rola
+  const links=[...document.querySelectorAll('.nav-link')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){
+      const i=secs.indexOf(e.target);
+      links.forEach(l=>l.classList.remove('active'));
+      if(links[i])links[i].classList.add('active');
+    }});
+  },{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(s=>s&&obs.observe(s));
+</script>
+</body>
+</html>
